@@ -19,7 +19,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 # Artisan işlemlerini çalıştır
-RUN php artisan migrate --force
+
 
 # Laravel’i başlat
 CMD php artisan serve --host=0.0.0.0 --port=8000
