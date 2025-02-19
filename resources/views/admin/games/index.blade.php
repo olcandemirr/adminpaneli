@@ -34,7 +34,7 @@
             <th>Meta Title</th>
             <th>Oynanma Sayısı</th>
             <th>İşlemler</th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -45,6 +45,10 @@
             <td>
                 @if($game->image)
                 <img src="{{ asset('storage/games' . $game->image) }}" width="150" class="rounded shadow">
+                {{-- DEBUG: URL’yi metin olarak yazdırma --}}
+                <small class="text-muted">
+                    {{ asset('storage/' . $game->image) }}
+                </small>
                 @else
                 <span class="text-muted">Oyun resmi bulunamadı</span>
                 @endif
@@ -82,8 +86,8 @@
                     </button>
                 </form>
             </td>
-            
-           
+
+
         </tr>
         @endforeach
     </tbody>
