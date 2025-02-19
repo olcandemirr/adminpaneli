@@ -44,7 +44,7 @@
             <td>{{ $game->id }}</td>
             <td>
                 @if($game->image)
-                <img src="{{ asset('storage/' . $game->image) }}" width="100" class="rounded shadow">
+                <img src="{{ asset('storage/' . $game->image) }}" width="150" class="rounded shadow">
                 @else
                 <span class="text-muted">Oyun resmi bulunamadı</span>
                 @endif
