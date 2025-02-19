@@ -37,4 +37,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
+    public function logout(\Illuminate\Http\Request $request)
+{
+    \Illuminate\Support\Facades\Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    // Çıkıştan sonra yönlendirme
+    return redirect('/login');
+}
+
 }
