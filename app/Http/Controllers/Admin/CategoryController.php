@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Search;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {  //listeleme yaptırdım
@@ -56,7 +57,13 @@ class CategoryController extends Controller
 
         $iconPath = null;
         if ($request->hasFile('icon')) {
-            $iconPath = $request->file('icon')->store('Category-icons', 'public');
+           
+            $directory = storage_path('app/public/category-icons');
+           
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true);
+            }
+            $iconPath = $request->file('icon')->store('category-icons', 'public');
         }
         Category::create([
             'name' => $request->name,
@@ -92,11 +99,14 @@ class CategoryController extends Controller
         ]);
         if ($request->hasFile('icon')) {
             if ($category->icon) {
-                storage::delete('public/' . $category->icon);
+                Storage::delete('public/' . $category->icon);
+            }
+            $directory = storage_path('app/public/category-icons');
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true);
             }
             $category->icon = $request->file('icon')->store('category-icons', 'public');
         }
-
 
         $category->update([
             'name' => $request->name,

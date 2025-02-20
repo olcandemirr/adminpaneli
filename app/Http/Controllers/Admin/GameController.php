@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Search;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class GameController extends Controller
 {
@@ -68,6 +69,11 @@ class GameController extends Controller
         
         $imagePath = null;
         if ($request->hasFile('image')) {
+            $directory = storage_path('app/public/games');
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true);
+            }
+            
             $imagePath = $request->file('image')->store('games', 'public');
         }
     
@@ -125,9 +131,13 @@ class GameController extends Controller
             'category_id' => 'required|integer|exists:categories,id',
         ]);
         if ($request->hasFile('image')) {
-          
+            
             if ($game->image) {
                 Storage::delete('public/' . $game->image);
+            }
+            $directory = storage_path('app/public/games');
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true);
             }
             
             $game->image = $request->file('image')->store('games', 'public');
