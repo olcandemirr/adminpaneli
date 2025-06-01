@@ -15,19 +15,19 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <link rel="preload" as="style" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-27abf3b7.css" />
-    <link rel="preload" as="style" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-9e917001.css" />
-    <link rel="modulepreload" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-85cfc57f.js" />
-    <link rel="stylesheet" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-27abf3b7.css" />
-    <link rel="stylesheet" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-9e917001.css" />
-    <script type="module" src="https://admin-panell-ffac9a4a1e72.herokuapp.com/build/assets/app-85cfc57f.js"></script>
+    <link rel="preload" as="style" href="{{ asset('build/assets/app-27abf3b7.css') }}" />
+    <link rel="preload" as="style" href="{{ asset('build/assets/app-9e917001.css') }}" />
+    <link rel="modulepreload" href="{{ asset('build/assets/app-85cfc57f.js') }}" />
+    <link rel="stylesheet" href="{{ asset('build/assets/app-27abf3b7.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/assets/app-9e917001.css') }}" />
+    <script type="module" src="{{ asset('build/assets/app-85cfc57f.js') }}"></script>
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="https://admin-panell-ffac9a4a1e72.herokuapp.com">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     Laravel
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/login">Login</a>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
 
                     </ul>
@@ -60,7 +60,7 @@
                             <div class="card-header">Login</div>
 
                             <div class="card-body">
-                                <form method="POST" action="https://admin-panell-ffac9a4a1e72.herokuapp.com/login">
+                                <form method="POST" action="{{ route('login') }}">
                                     <input type="hidden" name="_token" value="LmpZ8pXaJQuLi5YiJ0XdVnhG6rIbNF8YOQDKcALd">
                                     <div class="row mb-3">
                                         <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
@@ -98,7 +98,7 @@
                                                 Login
                                             </button>
 
-                                            <a class="btn btn-link" href="https://admin-panell-ffac9a4a1e72.herokuapp.com/password/reset">
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 Forgot Your Password?
                                             </a>
                                         </div>
